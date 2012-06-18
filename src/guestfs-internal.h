@@ -512,7 +512,7 @@ extern void guestfs___rollback_drives (guestfs_h *g, size_t);
 extern void guestfs___launch_failed_error (guestfs_h *g);
 extern void guestfs___add_dummy_appliance_drive (guestfs_h *g);
 extern void guestfs___free_drives (guestfs_h *g);
-extern char *guestfs___appliance_command_line (guestfs_h *g, const char *appliance_dev, int flags);
+extern char *guestfs___appliance_command_line (guestfs_h *g, const char *appliance_dev, int flags, const char *vmchannel);
 #define APPLIANCE_COMMAND_LINE_IS_TCG 1
 
 /* launch-appliance.c */
