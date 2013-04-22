@@ -39,7 +39,6 @@ EXTRA_DIST = \
 	guests.xml.in
 
 disk_images = \
-	blank-disk.img \
 	blank-part.img \
 	blank-fs.img \
 	blank-bootroot.img \
