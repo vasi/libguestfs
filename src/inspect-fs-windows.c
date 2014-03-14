@@ -33,6 +33,23 @@
 #include <endian.h>
 #endif
 
+#if !defined(HAVE_LE32TOH) && !defined(le32toh)
+#include <byteswap.h>
+#if __BYTE_ORDER == __LITTLE_ENDIAN
+#define le32toh(x) (x)
+#else
+#define le32toh(x) bswap_32 (x)
+#endif
+#endif
+#if !defined(HAVE_LE64TOH) && !defined(le64toh)
+#include <byteswap.h>
+#if __BYTE_ORDER == __LITTLE_ENDIAN
+#define le64toh(x) (x)
+#else
+#define le64toh(x) bswap_64 (x)
+#endif
+#endif
+
 #include <pcre.h>
 
 #include "c-ctype.h"

@@ -89,9 +89,6 @@ SUBDIRS += bash
 if HAVE_PERL
 SUBDIRS += perl perl/examples
 endif
-if HAVE_OCAML
-SUBDIRS += ocaml ocaml/examples
-endif
 if HAVE_PYTHON
 SUBDIRS += python python/examples
 endif
@@ -122,12 +119,6 @@ endif
 
 # Unconditional because nothing is built yet.
 SUBDIRS += csharp
-
-# OCaml tools.  Note 'mllib' contains random shared code used by
-# all of the OCaml tools.
-if HAVE_OCAML
-SUBDIRS += mllib builder builder/website resize sparsify sysprep
-endif
 
 # Perl tools.
 if HAVE_TOOLS

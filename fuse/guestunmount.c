@@ -257,7 +257,7 @@ do_fusermount (const char *mountpoint, char **error_rtn)
     /* We have to parse error messages from fusermount, so ... */
     setenv ("LC_ALL", "C", 1);
 
-    execlp ("fusermount", "fusermount", "-u", mountpoint, NULL);
+    execlp ("/sbin/umount", "umount", mountpoint, NULL);
     perror ("exec");
     _exit (EXIT_FAILURE);
   }
@@ -334,7 +334,14 @@ do_fuser (const char *mountpoint)
   }
 
   if (pid == 0) {               /* Child - run /sbin/fuser. */
-    execlp ("/sbin/fuser", "fuser", "-v", "-m", mountpoint, NULL);
+      const char *cmd_prefix = "/bin/ps -p \"$(fuser -c ";
+      const char *cmd_suffix = " 2>/dev/null)\" -o user,pid,comm 2>/dev/null";
+      char *cmd = malloc (strlen(cmd_prefix) + strlen(mountpoint) + strlen(cmd_suffix) + 1);
+      if (cmd) {
+        sprintf (cmd, "%s%s%s", cmd_prefix, mountpoint, cmd_suffix);
+        execlp ("/bin/sh", "sh", "-c", cmd, NULL);
+        free (cmd);
+      }
     _exit (EXIT_FAILURE);
   }
 

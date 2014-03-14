@@ -37,8 +37,9 @@
  * then define be32toh for RHEL 5.
  */
 #if !defined(HAVE_BE32TOH) && !defined(be32toh)
+#include <byteswap.h>
 #if __BYTE_ORDER == __LITTLE_ENDIAN
-#define be32toh(x) __bswap_32 (x)
+#define be32toh(x) bswap_32 (x)
 #else
 #define be32toh(x) (x)
 #endif

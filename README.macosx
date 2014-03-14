@@ -1,0 +1,27 @@
+See: https://www.redhat.com/archives/libguestfs/2013-October/msg00042.html
+
+Install osxfuse
+
+Install from MacPorts:
+qemu
+cdrtools
+pcre
+augeas
+libmagic
+libconfig
+yajl
+automake
+libtool
+coreutils
+ocaml
+ocaml-findlib
+
+Set MP to MacPorts root (usually /opt/local)
+Prefix to PATH: $MP/libexec/gnubin
+
+Configure: ./configure --disable-appliance --disable-daemon --disable-probes --disable-php CFLAGS="-I$MP/include" LDFLAGS="-L$MP/lib" LIBS="-lintl" FUSE_CFLAGS="-I/usr/local/include/osxfuse/fuse -D_FILE_OFFSET_BITS=64" FUSE_LIBS="-losxfuse"
+
+
+* -nodefaults??
+* ocaml library gettext??
+* ruby multiple_definedsuppress
